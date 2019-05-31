@@ -162,7 +162,7 @@ Here we introduce the `R` package `ThermStats`, which integrates ideas, techniqu
 1. Automates and speeds up the extraction and conversion of raw data from (FLIR) thermal images.
 2. Provides a variety of tools to calculate metrics of thermal heterogeneity using any gridded temperature data.
 
-A schematic outline of the package is included in the supplementary vignette (Figure S1). We illustrate the utility of our package using temperature data for the island of Borneo, including thermal images collected in the field using a FLIR thermal camera, and a coarser resolution microclimate layer estimated using LIDAR data [@jucker_canopy_2018]. 
+We illustrate the utility of our package using temperature data for the island of Borneo, including thermal images collected in the field using a FLIR thermal camera, and a coarser resolution microclimate layer estimated using LIDAR data [@jucker_canopy_2018]. 
 
 # Functionality
 
@@ -173,6 +173,12 @@ High-resolution surface temperature measurements can easily be collected in the 
 Before any data are collected, we recommend users familiarise themselves with the technology [for a thorough review, see @tattersall_infrared_2016]. There are various sources of the infrared radiation detected by a thermal camera, but we want to focus only on the radiation emitted by the object of interest, which is a function of its temperature. The amount of radiation emitted by a particular object, for a given temperature, depends on its emissivity. A perfect blackbody has an emissivity of 1, while surfaces that an ecologist is likely to photograph typically have an emissivity from 0.92 [for dry, bare soil; @flir_manual_2016] to 0.99 [for green broadleaf forest; @snyder_classification-based_1998].  Additionally, the temperature and relative humidity of the atmosphere and the distance between the object and the camera will affect (1) the amount of emitted radiation that is absorbed by the atmosphere and (2) the amount of background radiation, with some of this also being reflected by the object (reflected apparent temperature). 
 
 To accurately quantify surface temperature, environmental parameters (emissivity, reflected apparent temperature, atmospheric temperature, atmospheric relative humidity and object distance) can be set in the camera or defined during data processing (see 'Step 3: Conversion of raw data'). The benefit of the latter approach is that the user can measure atmospheric temperature and relative humidity concurrently with thermal image collection, and these parameters can then be set individually during image processing. Object distance should be minimised and kept constant where possible. Emissivity can either be estimated from the literature [cf. @scheffers_extreme_2017] or sampled in the field [@flir_manual_2016]. Reflected apparent temperature can also be sampled [@flir_manual_2016], although for high emissivities and short object distances, relatively little radiation is reflected and thus apparent temperature can be assumed to equal the atmospheric temperature [@tattersall_thermimage:_2017]. It is recommended that thermal cameras are regularly calibrated (FLIR Systems suggest doing so once per year).
+
+(ref:cap-1) Overview of the main `ThermStats` functions and functionality.
+
+```{r fig-1, fig.cap= "(ref:cap-1)", fig.pos = 'H'}
+knitr::include_graphics("figures/fig-1-1.png")
+```
 
 ## Step 2: Data extraction
 
