@@ -115,13 +115,15 @@ bg_bb <- attr(lidar_bg, "bb")
 
 _______________________________________________________________________________________
 
-Rebecca A. Senior^1^*, Jane K. Hill^2^ and David P. Edwards^1^
+Rebecca A. Senior^1^*&sect;, Jane K. Hill^2^ and David P. Edwards^1^
 
 ^1^Department of Animal and Plant Sciences, Alfred Denny Building, University of Sheffield, Western Bank, Sheffield, S10 2TN, UK
 
 ^2^Department of Biology, University of York, Wentworth Way, York, YO10 5DD, UK
 
 *__Corresponding author:__ rebecca.a.senior@gmail.com, +44(0)114 2220123 (R.A. Senior)
+
+&sect; Present address: Woodrow Wilson School of Public and International Affairs and Department of Ecology and Evolutionary Biology, Princeton University, Princeton, New Jersey 08544 USA
 
 __ORCID iDs:__ orcid.org/0000-0002-8208-736X (R.A. Senior); orcid.org/0000-0003-1871-7715 (J.K. Hill)
 
