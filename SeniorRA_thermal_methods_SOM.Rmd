@@ -49,9 +49,9 @@ __ORCID iDs:__ orcid.org/0000-0002-8208-736X (R.A. Senior); orcid.org/0000-0003-
 
 # Text S1: Package vignette
 
-(ref:cap-B-2) Schematic summarising the key functions for processing groups of images (left) or a single image (right).
+(ref:cap-2) Schematic summarising the key functions for processing groups of images (left) or a single image (right).
 
-```{r fig-B-2, fig.cap= "(ref:cap-B-2)", fig.pos = 'H'}
+```{r fig-2, fig.cap= "(ref:cap-2)", fig.pos = 'H'}
 knitr::include_graphics("figures/fig-s-1.png")
 ```
 
@@ -164,7 +164,7 @@ For grouped images, `stats_by_group` requires the user to supply a list of matri
 
 By default, both `get_stats` and `stats_by_group` return a dataframe with patch statistics (Table 2) for each image or group, respectively.
 
-```{r tab-B-1, results='asis'}
+```{r tab-1, results='asis'}
 tab1 <- "
 Table: Example metadata denoting the grouping ('rep_id') of different thermal images. Statistics can be calculated over multiple images within a group, using the function `stats_by_group`.
 
@@ -201,7 +201,7 @@ flir_stats_group <-
                       "perc_5", "perc_95"))
 ```
 
-```{r tab-B-2, results='asis'}
+```{r tab-2, results='asis'}
 tab2 <- "
 Table: A snippet of hot spot patch statistics returned by `stats_by_group`, which implements `get_stats` within groups.
 
@@ -216,11 +216,11 @@ cat(tab2)
 
 ## Plotting
 
-In addition to patch statistics, `get_stats` can return (1) the temperature dataset in a dataframe format, and (2) a `SpatialPolygonsDataFrame` of its hot and cold spots. The function `plot_patches` can then recreate the original thermal image overlaid with outlines of hot and cold spots, as well as the temperature distribution if `plot_distribution = TRUE` (\autoref{fig:fig-B-1}).
+In addition to patch statistics, `get_stats` can return (1) the temperature dataset in a dataframe format, and (2) a `SpatialPolygonsDataFrame` of its hot and cold spots. The function `plot_patches` can then recreate the original thermal image overlaid with outlines of hot and cold spots, as well as the temperature distribution if `plot_distribution = TRUE` (\autoref{fig:fig-1}).
 
-(ref:cap-B-1) The output of `plot_patches` includes a histogram and the original temperature data overlaid with outlines of hot and cold spots, identified using the G\* variant of the Getis-Ord local statistic.
+(ref:cap-1) The output of `plot_patches` includes a histogram and the original temperature data overlaid with outlines of hot and cold spots, identified using the G\* variant of the Getis-Ord local statistic.
 
-```{r fig-B-1, fig.cap= "(ref:cap-B-1)", echo = TRUE}
+```{r fig-1, fig.cap= "(ref:cap-1)", echo = TRUE}
 plot_patches(
     # The raw temperature data
     df = flir_stats$df,
