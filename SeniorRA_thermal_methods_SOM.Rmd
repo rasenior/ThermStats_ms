@@ -8,14 +8,7 @@ output:
         fig_caption: yes
         keep_tex: yes
         includes:
-            after_body: litreview.tex
-    bookdown::word_document2:
-        pandoc_args: "--smart"
-        # reference_docx: E:/GoogleDrive/Referencing/Word templates/ms_general.docx
-        # reference_docx: D:/GoogleDrive/Referencing/Word templates/ms_general.docx
-        reference_docx: C:/Users/Rebecca/Google Drive/Referencing/Word templates/ms_general.docx
-    bookdown::html_document2:
-        toc: no
+            in_header: header.tex
 fontsize: 12pt
 geometry: margin=2.5cm
 mainfont: Calibri
@@ -23,37 +16,17 @@ lang: en-GB
 papersize: a4
 documentclass: article
 link-citations: yes
-# csl: E:/GoogleDrive/Referencing/Citation styles/elsevier-harvard.csl
-# csl: D:/GoogleDrive/Referencing/Citation styles/elsevier-harvard.csl
-csl: C:/Users/Rebecca/Google Drive/Referencing/Citation styles/elsevier-harvard.csl
+csl: methods-in-ecology-and-evolution.csl
 biblio-style: apalike
-bibliography: [refs.bib, refs_som.bib]
-header-includes:
-- \usepackage{natbib}
-- \usepackage{fontspec}
-- \newcommand*{\myfont}{\fontfamily{lmtt}\selectfont} % Latin Modern typewriter for syntax
-- \DeclareTextFontCommand{\textmyfont}{\myfont}
-- \usepackage{float}
-- \usepackage{subcaption}
-- \usepackage{fancyhdr}
-- \pagestyle{fancy}
-- \fancyhf{}
-- \chead{Supplementary material}
-- \fancyfoot[CO,CE]{\thepage}
-- \usepackage{setspace}
-- \doublespacing
+bibliography: [refs.bib]
 ---
 
 ```{r knitr-setup, include=FALSE}
 knitr::opts_knit$set(root.dir = "../")
 knitr::opts_chunk$set(echo = FALSE,message = FALSE,error = FALSE, warning = FALSE, 
                       fig.width = 16.6/2.54, fig.height = 9/2.54, dpi = 800, 
-                      fig.path = "./output/", fig.align='center', fig.pos = 'H',
+                      fig.path = "./output/", fig.align = 'center', fig.pos = 'H',
                       out.extra = '', eval = TRUE)
-```
-
-```{r other-setup, include = FALSE}
-library(ThermStats)
 ```
 
 _______________________________________________________________________________________
@@ -79,7 +52,7 @@ __ORCID iDs:__ orcid.org/0000-0002-8208-736X (R.A. Senior); orcid.org/0000-0003-
 (ref:cap-B-2) Schematic summarising the key functions for processing groups of images (left) or a single image (right).
 
 ```{r fig-B-2, fig.cap= "(ref:cap-B-2)", fig.pos = 'H'}
-knitr::include_graphics("../figures/schematic/schematic.png")
+knitr::include_graphics("figures/fig-s-1.png")
 ```
 
 ## Summary
@@ -93,13 +66,18 @@ devtools::install_github("rasenior/ThermStats")
 library(ThermStats)
 ```
 
+```{r load-thermstats, include = FALSE}
+library(ThermStats)
+```
+
 Once loaded, the code below can be followed step-by-step.
 
 ## Extracting raw data
 
 Data are extracted from FLIR images using `batch_extract`. This is a batch implementation of the `readflirJPG` function from `Thermimage`. It requires only the path to the directory of FLIR thermal images, and the freely available external software ['Exiftool'](https://www.sno.phy.queensu.ca/~phil/exiftool/ "Exiftool"). Besides raw data, this step also retrieves camera-specific calibration parameters which are required later to convert raw data to temperature values.
 
-```{r batch-extract, echo= TRUE, results = "hide"}
+<!-- Don't need to evaluate this, flir_raw included in installation  -->
+```{r batch-extract, echo = TRUE, eval = FALSE}
 # Batch extract thermal images included in ThermStats installation
 flir_raw <-
     batch_extract(in_dir = system.file("extdata", 
@@ -117,7 +95,7 @@ Raw data are encoded in each thermal image as a 16 bit analog-to-digital signal,
 * Atmospheric temperature = the temperature of the atmosphere.
 * Relative humidity = the relative humidity of the atmosphere.
 
-```{r batch-convert, echo= TRUE, results = "hide"}
+```{r batch-convert, echo = TRUE, results = "hide"}
 # Define raw data
 raw_dat <- flir_raw$raw_dat
 # Define camera calibration constants dataframe
@@ -158,7 +136,7 @@ Statistics can be calculated for individual thermal images (in a matrix or raste
 
 For an individual image, `get_stats` requires the user to specify the image and the desired statistics. Statistics can be calculated for geographic temperature data, in which case the user should also define the extent and projection of the data.
 
-```{r get-stats, echo= TRUE, results = "hide"}
+```{r get-stats, echo = TRUE, eval = FALSE}
 flir_stats <-
     get_stats( 
         # The temperature dataset
@@ -198,10 +176,10 @@ Table: Example metadata denoting the grouping ('rep_id') of different thermal im
 |     8613|T7P2   |    23.50|           96|
 "
 
-cat(tab1) # output the table in a format good for HTML/PDF/docx conversion
+cat(tab1)
 ```
 
-```{r stats-by-group, results = "hide"}
+```{r stats-by-group, eval = FALSE}
 flir_stats_group <-
     stats_by_group(
         # A dataframe denoting the grouping
@@ -233,15 +211,8 @@ Table: A snippet of hot spot patch statistics returned by `stats_by_group`, whic
 |       24.0|         23|        25.0|         1.68|            7.80|           0.855|
 "
 
-cat(tab2) # output the table in a format good for HTML/PDF/docx conversion
+cat(tab2)
 ```
-
-<!-- # ```{r tab-B-2, tidy = FALSE, echo = FALSE} -->
-<!-- # knitr::kable( -->
-<!-- #     head(flir_stats_group[, c(1:5,8,13:17)], 10), booktabs = TRUE  -->
-<!-- # ) -->
-<!-- #  -->
-<!-- # ``` -->
 
 ## Plotting
 
@@ -254,8 +225,12 @@ plot_patches(
     # The raw temperature data
     df = flir_stats$df,
     # The patch outlines
-    patches = flir_stats$patches)
+    patches = flir_stats$patches, 
+    # Add hatching
+    hatching = TRUE)
 ```
 
-## References
+\pagebreak
+
+# References
 
