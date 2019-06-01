@@ -571,8 +571,7 @@ Fine-scale temperature variation across space and time has a huge influence on s
 
 *The development version of* `ThermStats` can be downloaded from GitHub: https://github.com/rasenior/ThermStats. Bug reports and suggested enhancements can be submitted to: https://github.com/rasenior/ThermStats/issues. 
 
-*This manuscript used `ThermStats` version 0.7.10, which is deposited on Zenodo [@senior_thermstats_2019]. The manuscript itself can be reproduced by downloading the scripts and data from GitHub (https://github.com/rasenior/ThermStats_ms) and rendering with `rmarkdown::render`.*
-
+*This manuscript used `ThermStats` version 0.7.10, which is deposited on Zenodo [@senior_thermstats_2019]. The manuscript itself can be reproduced by downloading the scripts and data from GitHub (https://github.com/rasenior/ThermStats_ms), and rendering either using the knit button in RStudio or the code `rmarkdown::render("SeniorRA_thermstats_ms.Rmd", output_format = "bookdown::word_document2")`.*
 
 # Acknowledgements
 
