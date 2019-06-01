@@ -8,6 +8,8 @@ output:
         latex_engine: xelatex
         fig_caption: yes
         keep_tex: yes
+        includes:
+            in_header: header.tex
 link-citations: yes
 csl: methods-in-ecology-and-evolution.csl
 biblio-style: apalike
@@ -18,19 +20,9 @@ mainfont: Calibri
 lang: en-GB
 papersize: a4
 documentclass: article
-header-includes:
-- \usepackage{url}
-- \usepackage{float}
-- \usepackage{fancyhdr}
-- \pagestyle{fancy}
-- \fancyhf{}
-- \fancyfoot[CO,CE]{\thepage}
-- \usepackage{setspace}
-- \doublespacing
 ---
 
 ```{r setup, include=FALSE}
-# knitr::opts_knit$set(root.dir = "../")
 knitr::opts_chunk$set(echo = FALSE,message = FALSE,error = FALSE, warning = FALSE, 
                       fig.width = 16.6/2.54, fig.height = 10/2.54, dpi = 800, 
                       fig.path = "./figures/", fig.align = 'center', fig.pos = 'H')
@@ -56,7 +48,8 @@ tidy_hour <- function(hour, separator = ":"){
   }else message("Invalid hour")
 }
 
-# Colourblind-friendly palette
+# Colourblind-friendly palette 
+# (from http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/)
 cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442",
                "#0072B2", "#D55E00", "#CC79A7")
 
@@ -576,7 +569,10 @@ Fine-scale temperature variation across space and time has a huge influence on s
 
 # Code availability
 
-The `R` package `ThermStats` can be downloaded from GitHub: https://github.com/rasenior/ThermStats. Bug reports and suggested enhancements can be submitted to: https://github.com/rasenior/ThermStats/issues. 
+*The development version of* `ThermStats` can be downloaded from GitHub: https://github.com/rasenior/ThermStats. Bug reports and suggested enhancements can be submitted to: https://github.com/rasenior/ThermStats/issues. 
+
+*This manuscript used `ThermStats` version 0.7.10, which is deposited on Zenodo [@senior_thermstats_2019]. The manuscript itself can be reproduced by downloading the scripts and data from GitHub (https://github.com/rasenior/ThermStats_ms) and rendering with `rmarkdown::render`.*
+
 
 # Acknowledgements
 
