@@ -29,15 +29,26 @@ knitr::opts_chunk$set(echo = FALSE,message = FALSE,error = FALSE, warning = FALS
 ```
 
 ```{r setup-other, include=FALSE}
+# Function to require and install packages where necessary
+using <- function(...) {
+  libs <- unlist(list(...))
+  req <- unlist(lapply(libs, require, character.only = TRUE))
+  need <- libs[req == FALSE]
+  if (length(need) > 0) { 
+    install.packages(need)
+    lapply(need,require,character.only = TRUE)
+  }
+}
+
+# Load/install necessary packages
+using("dplyr",
+      "ggmap", "rasterVis", "viridis", 
+      "ggpubr", "egg", "gridExtra")
+# Load/install ThermStats from GitHub
+if (!(require("ThermStats", character.only = TRUE))) {
+  devtools::install_github("rasenior/ThermStats")
+}
 library(ThermStats)
-library(raster)
-library(ggmap)
-library(rasterVis)
-library(dplyr)
-library(cowplot)
-library(ggpubr)
-library(gridExtra)
-library(viridis)
 
 # Tidy time function
 tidy_hour <- function(hour, separator = ":"){
@@ -248,15 +259,14 @@ p2b <-
                val_pal = viridis(10, option = "A"),
                print_plot = FALSE, return_plot = TRUE,
                lab_size = title_size, text_size = text_size, outline_size = 0.3)
-p2 <-
-  plot_grid(p2a$fig_distribution, p2a$fig_patches, 
-            p2b$fig_distribution, p2b$fig_patches, 
-            ncol = 2,
-            labels = c("(a)", "(b)", "(c)","(d)"), 
-            label_size = title_size, 
-            label_y = 0.1)
 
-p2
+ggpubr::ggarrange(p2a$fig_distribution, p2a$fig_patches, 
+                  p2b$fig_distribution, p2b$fig_patches, 
+                  ncol = 2,
+                  nrow = 2,
+                  labels = c("(a)", "(b)", "(c)","(d)"), 
+                  font.label = list(size = lab_size), 
+                  vjust = 37)
 ```
 
 # Example applications
@@ -382,13 +392,13 @@ p3 <-
 
 tags <- paste(paste("(", letters[1:12], ")", sep = ""), flir_sig$sig)
 
-egg::tag_facet(p3,
-               open = "", 
-               close = "", 
-               tag_pool = tags, 
-               size = 3, 
-               vjust = 1,
-               hjust = -0.1) +
+tag_facet(p3,
+          open = "", 
+          close = "", 
+          tag_pool = tags, 
+          size = 3, 
+          vjust = 1,
+          hjust = -0.1) +
   theme(strip.text = element_text(size = title_size,
                                   margin = margin(0,2,0,0, unit = "pt")))
 
@@ -416,6 +426,7 @@ p4a <-
                        y = list(at = 26:33, 
                                 tck = c(1,0),
                                 cex = text_size_lattice)))
+
 
 p4b <-
   hovmoller(flir_group_avg, 
@@ -545,15 +556,15 @@ p5c <-
   scale_x_discrete(labels = c("Inside\nplantation",
                               "Outside\nplantation"))
 
-ggarrange(
-  ggarrange(p5a, p5b, ncol = 2, labels = c("(a)", "(b)"), 
-            font.label = list(size = lab_size), 
-            align = "hv",
-            widths = c(5,10),
-            heights = c(10,10)), 
-  ggarrange(p5c, ncol = 1, labels = "(c)",vjust = 15, 
-            font.label = list(size = lab_size),
-            align = "hv"), 
+ggpubr::ggarrange(
+  ggpubr::ggarrange(p5a, p5b, ncol = 2, labels = c("(a)", "(b)"), 
+                    font.label = list(size = lab_size), 
+                    align = "hv",
+                    widths = c(5,10),
+                    heights = c(10,10)), 
+  ggpubr::ggarrange(p5c, ncol = 1, labels = "(c)",vjust = 15, 
+                    font.label = list(size = lab_size),
+                    align = "hv"), 
   heights = c(5, 2),
   nrow = 2
 )
