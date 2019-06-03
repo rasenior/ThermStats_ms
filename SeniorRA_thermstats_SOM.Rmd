@@ -226,6 +226,8 @@ plot_patches(
     df = flir_stats$df,
     # The patch outlines
     patches = flir_stats$patches, 
+    # The thickness of outlines
+    outline_size = 0.1,
     # Add hatching
     hatching = TRUE)
 ```
