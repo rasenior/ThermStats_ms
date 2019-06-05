@@ -130,7 +130,13 @@
     \date{}
     \predate{}\postdate{}
   
+
+% General settings
 \usepackage{float}
+\usepackage{setspace}
+\doublespacing
+
+% Header and footer
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
@@ -139,23 +145,15 @@
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 \setlength\headheight{14.5pt}
-\usepackage{setspace}
-\doublespacing
 
- % For manual landscape pages
-\usepackage{lscape}
-\newcommand{\blandscape}{\begin{landscape}}
-\newcommand{\elandscape}{\end{landscape}}
-
-% For manual syntax highlighting
-\usepackage{fontspec}
-\setmainfont{Calibri} % Calibri is main font
-\newcommand*{\myfont}{\fontfamily{lmtt}\selectfont} % Latin Modern typewriter for syntax
-\DeclareTextFontCommand{\textmyfont}{\myfont}
-
-%  For tables
-\usepackage{multirow}
-\usepackage{gensymb}
+% For logo on title page
+\usepackage{titling}
+\pretitle{%
+  \begin{center}
+  \LARGE
+  \includegraphics[width=4.39cm,height=5.08cm]{figures/hexsticker.png}\\[\bigskipamount]
+}
+\posttitle{\end{center}}
 
 % To change labelling of supplementary figures and tables
 \newcommand{\beginsupplement}{\setcounter{table}{0}  \renewcommand{\tablename}{Supplementary Table} \setcounter{figure}{0} \renewcommand{\figurename}{Supplementary Figure}}
@@ -180,6 +178,7 @@ Rebecca A. Senior\textsuperscript{1}*, Jane K. Hill\textsuperscript{2} and David
 \setcounter{tocdepth}{2}
 \tableofcontents
 \pagebreak
+\beginsupplement
 
 \hypertarget{text-s1-package-vignette}{%
 \section{Text S1: Package vignette}\label{text-s1-package-vignette}}
@@ -366,9 +365,11 @@ In addition to patch statistics, \texttt{get\_stats} can return (1) the temperat
     \CommentTok{# The patch outlines}
     \DataTypeTok{patches =}\NormalTok{ flir_stats}\OperatorTok{$}\NormalTok{patches, }
     \CommentTok{# The thickness of outlines}
-    \DataTypeTok{outline_size =} \FloatTok{0.3}\NormalTok{,}
+    \DataTypeTok{outline_size =} \FloatTok{0.5}\NormalTok{,}
     \CommentTok{# Add hatching}
-    \DataTypeTok{hatching =} \OtherTok{TRUE}\NormalTok{)}
+    \DataTypeTok{hatching =} \OtherTok{TRUE}\NormalTok{, }
+    \CommentTok{# Define density of hatching}
+    \DataTypeTok{hatch_density =} \KeywordTok{c}\NormalTok{(}\FloatTok{0.75}\NormalTok{, }\FloatTok{0.75}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 

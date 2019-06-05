@@ -46,6 +46,7 @@ __ORCID iDs:__ orcid.org/0000-0002-8208-736X (R.A. Senior); orcid.org/0000-0003-
 \setcounter{tocdepth}{2}
 \tableofcontents
 \pagebreak
+\beginsupplement
 
 # Text S1: Package vignette
 
@@ -227,9 +228,11 @@ plot_patches(
     # The patch outlines
     patches = flir_stats$patches, 
     # The thickness of outlines
-    outline_size = 0.1,
+    outline_size = 0.5,
     # Add hatching
-    hatching = TRUE)
+    hatching = TRUE, 
+    # Define density of hatching
+    hatch_density = c(0.75, 0.75))
 ```
 
 \pagebreak
