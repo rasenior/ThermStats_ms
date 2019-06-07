@@ -3,29 +3,14 @@ title: "`ThermStats`: an `R` package for quantifying surface thermal heterogenei
 output:
     bookdown::word_document2:
         reference_docx: ms_template.docx
-    bookdown::pdf_document2:
-        toc: no
-        latex_engine: xelatex
-        fig_caption: yes
-        keep_tex: yes
-        includes:
-            in_header: header.tex
-link-citations: yes
 csl: methods-in-ecology-and-evolution.csl
-biblio-style: apalike
 bibliography: [refs.bib]
-fontsize: 12pt
-geometry: margin=2.5cm
-mainfont: Calibri
-lang: en-GB
-papersize: a4
-documentclass: article
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE,message = FALSE,error = FALSE, warning = FALSE, 
                       fig.width = 16.6/2.54, fig.height = 10/2.54, dpi = 800, 
-                      fig.path = "./figures/", fig.align = 'center', fig.pos = 'H')
+                      fig.path = "./figures/main/", fig.align = 'center', fig.pos = 'H')
 ```
 
 ```{r setup-other, include=FALSE}
@@ -135,7 +120,7 @@ __Key words:__ infrared; microclimate; temperature; thermal camera; thermography
 
 __Type of paper:__ Application
 
-__Word count:__ 3207/3000 words
+__Word count:__ 3145/3000 words
 
 # Abstract
 
@@ -147,7 +132,7 @@ __Word count:__ 3207/3000 words
 
 4. Our package simplifies the processing of thermal data, and our metrics capture key spatiotemporal temperature trends that underpin physiological, behavioural and demographic responses to environmental change. As such, `ThermStats` can advance a wide range of studies requiring fine-scale surface temperature data for microclimate investigations.
 
-__292 words__
+__291 words__
 
 # Introduction
 
@@ -170,7 +155,7 @@ We illustrate the utility of our package using temperature data for the island o
 
 ## Step 1: Thermal image collection
 
-*Surface temperature measurements at high spatial resolution* can easily be collected in the field using a handheld thermal camera. We used a *FLIR model E40 camera*, which costs ~US$4,000, weighs 825 g, and takes 19,200 measurements (160 x 120 pixels) in a single photo  [@flir_manual_2016; @scheffers_extreme_2017]. Various other models are available, including the smaller and more affordable FLIR ONE smartphone attachment at ~US$300, 34.5 g and a resolution of 80 x 60 pixels. *While FLIR cameras appear to be the most widely used it should be noted that other brands available, such as Optris and testo. Currently `ThermStats` cannot directly extract data from other camera models, but readers are welcome to request enhancements via GitHub (https://github.com/rasenior/ThermStats/issues).*
+*Surface temperature measurements at high spatial resolution* can easily be collected in the field using a handheld thermal camera. We used a *FLIR model E40 camera*, which costs ~US$4,000, weighs 825 g, and takes 19,200 measurements (160 x 120 pixels) in a single photo  [@flir_manual_2016; @scheffers_extreme_2017]. Various other models *exist*, including the smaller and more affordable FLIR ONE smartphone attachment at ~US$300, 34.5 g and a resolution of 80 x 60 pixels. *While FLIR cameras appear to be the most widely used it should be noted that other brands are available, such as Optris and testo. Currently `ThermStats` cannot directly extract data from other camera models, but readers are welcome to request enhancements via GitHub (https://github.com/rasenior/ThermStats/issues).*
 
 As with any field study, the sampling design should aim to achieve sufficient coverage over the study area and over time, such that the images are representative samples of the treatments of interest.  For example, a single image of the ground from 1 m away encompasses an area of 0.9 x 1.1 m (1 pixel &cong; 0.5 cm^2^) using a FLIR E40 camera [@flir_manual_2016], and so it may be necessary to take multiple photos in different cardinal directions and at different times of day to effectively represent the temperature of a study plot [@scheffers_extreme_2017; @senior_tropical_2018].  
 
@@ -179,7 +164,7 @@ Before any data are collected, we recommend users familiarise themselves with th
 To accurately quantify surface temperature, environmental parameters (emissivity, reflected apparent temperature, atmospheric temperature, atmospheric relative humidity and object distance) can be set in the camera or defined during data processing (see 'Step 3: Conversion of raw data'). *In the latter approach the user can* measure atmospheric temperature and relative humidity concurrently with thermal image collection, and *set these parameters during image processing.* Object distance should be minimised and kept constant where possible. Emissivity can either be estimated from the literature [cf. @scheffers_extreme_2017] or sampled in the field [@flir_manual_2016]. *Temperature measurements will be more accurate if there is less variation in surface emissivity within each image. That said, common components of the ground surface, such as leaves and soil, have very similar, high emissivity [> 0.9; @snyder_classification-based_1998] and thus the impact of emissivity variation on temperature measurements is relatively low. Likewise, reflected apparent temperature can be sampled in the field [@flir_manual_2016], but* for high emissivities and short object distances, relatively little radiation is reflected and thus apparent temperature can be assumed to equal the atmospheric temperature [@tattersall_thermimage:_2017]. It is recommended that thermal cameras are regularly calibrated (FLIR Systems suggest doing so once per year).
 
 ```{r fig-1, fig.cap= "Overview of the main `ThermStats` functions and a typical workflow. Dashed lines indicate optional steps. Note that the precise functions used in Step 4 will depend on the study design.", fig.pos = 'H'}
-knitr::include_graphics("figures/fig-1-1.png")
+knitr::include_graphics("figures/main/fig-1-1.png")
 ```
 
 ## Step 2: Data extraction
