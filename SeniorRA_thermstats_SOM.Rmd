@@ -25,7 +25,7 @@ bibliography: [refs.bib]
 knitr::opts_knit$set(root.dir = "../")
 knitr::opts_chunk$set(echo = FALSE,message = FALSE,error = FALSE, warning = FALSE, 
                       fig.width = 16.6/2.54, fig.height = 9/2.54, dpi = 800, 
-                      fig.path = "./output/", fig.align = 'center', fig.pos = 'H',
+                      fig.path = "./figures/som/", fig.align = 'center', fig.pos = 'H',
                       out.extra = '', eval = TRUE)
 ```
 
@@ -53,7 +53,7 @@ __ORCID iDs:__ orcid.org/0000-0002-8208-736X (R.A. Senior); orcid.org/0000-0003-
 (ref:cap-2) Schematic summarising the key functions for processing groups of images (left) or a single image (right).
 
 ```{r fig-2, fig.cap= "(ref:cap-2)", fig.pos = 'H'}
-knitr::include_graphics("figures/fig-s-1.png")
+knitr::include_graphics("figures/som/fig-s-1.png")
 ```
 
 ## Summary
