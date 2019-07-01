@@ -9,8 +9,7 @@ bibliography: [refs.bib]
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE,message = FALSE,error = FALSE, warning = FALSE, 
-                      fig.width = 16.6/2.54, fig.height = 10/2.54, dpi = 800, 
-                      fig.path = "./figures/main/", fig.align = 'center', fig.pos = 'H')
+                      dpi = 800, fig.path = "./figures/main/")
 ```
 
 ```{r setup-other, include=FALSE}
@@ -25,16 +24,15 @@ using <- function(...) {
   }
 }
 
-# Load/install necessary packages
-using("dplyr",
-      "ggmap", "viridis", 
-      "ggpubr", "egg")
 # Load/install ThermStats from GitHub
 if (!(require("ThermStats", character.only = TRUE))) {
   devtools::install_github("rasenior/ThermStats")
 }
 library(ThermStats)
 library(HatchedPolygons)
+
+# Load/install other necessary packages
+using("dplyr", "ggmap", "viridis", "ggpubr", "egg")
 
 # Tidy time function
 tidy_hour <- function(hour, separator = ":"){
@@ -121,8 +119,6 @@ __Key words:__ infrared; microclimate; temperature; thermal camera; thermography
 
 __Type of paper:__ Application
 
-__Word count:__ 3145/3000 words
-
 # Abstract
 
 1. Variation in temperature at a fine spatial scale creates critically important microclimates for many organisms. Quantifying thermal heterogeneity at this scale is challenging and, until recently, has been largely restricted to the use of dataloggers to record air temperature. Thermography is becoming an increasingly viable alternative. A single photo from a thermal imaging camera contains thousands of spatially explicit surface temperature measurements, making thermal cameras ideal for rapidly assessing temperature variation at fine scale.
@@ -132,8 +128,6 @@ __Word count:__ 3145/3000 words
 3. We demonstrate how `ThermStats` can be used to capture temperature variation at fine spatial scales in structurally complex habitat, such as tropical rainforest. Using thermal images collected in the field (~0.5 cm^2^ resolution), we found that thermal hetereogeneity varied little between primary and logged forest, but did vary with time of day. Comparing temperature extremes in a microclimate layer estimated from LIght Detection And Ranging (LIDAR) data (2,500 m^2^ resolution), we found that both hot and cold extremes were hotter inside oil palm plantations than in the neighbouring forest.
 
 4. Our package simplifies the processing of thermal data, and our metrics capture key spatiotemporal temperature trends that underpin physiological, behavioural and demographic responses to environmental change. As such, `ThermStats` can advance a wide range of studies requiring fine-scale surface temperature data for microclimate investigations.
-
-__291 words__
 
 # Introduction
 
@@ -164,7 +158,7 @@ Before any data are collected, we recommend users familiarise themselves with th
 
 To accurately quantify surface temperature, environmental parameters (emissivity, reflected apparent temperature, atmospheric temperature, atmospheric relative humidity and object distance) can be set in the camera or defined during data processing (see 'Step 3: Conversion of raw data'). In the latter approach the user can measure atmospheric temperature and relative humidity concurrently with thermal image collection, and set these parameters during image processing. Object distance should be minimised and kept constant where possible. Emissivity can either be estimated from the literature [cf. @scheffers_extreme_2017] or sampled in the field [@flir_manual_2016]. Temperature measurements will be more accurate if there is less variation in surface emissivity within each image. That said, common components of the ground surface, such as leaves and soil, have very similar, high emissivity [> 0.9; @snyder_classification-based_1998] and thus the impact of emissivity variation on temperature measurements is relatively low. Likewise, reflected apparent temperature can be sampled in the field [@flir_manual_2016], but for high emissivities and short object distances, relatively little radiation is reflected and thus apparent temperature can be assumed to equal the atmospheric temperature [@tattersall_thermimage:_2017]. It is recommended that thermal cameras are regularly calibrated (FLIR Systems suggest doing so once per year).
 
-```{r fig-1, fig.cap= "Overview of the main `ThermStats` functions and a typical workflow. Dashed lines indicate optional steps. Note that the precise functions used in Step 4 will depend on the study design.", fig.pos = 'H'}
+```{r fig-1, fig.cap= "Overview of the main `ThermStats` functions and a typical workflow. Dashed lines indicate optional steps. Note that the precise functions used in Step 4 will depend on the study design.",fig.width = 16.6/2.54, fig.height = 10/2.54}
 knitr::include_graphics("figures/main/fig-1-1.png")
 ```
 
@@ -229,7 +223,7 @@ We assume that for most users the spatial unit of replication will comprise mult
 
 (ref:cap-2) Examples of temperature frequency distribution (left column) and spatial distribution (right column) for temperature data from a thermal image (top row) and from WorldClim2 [bottom row; @fick_worldclim_2017]. Pixels are shaded from cold (black) to hot (beige). Clusters of extreme values were identified by calculating the G* variant of the Getis-Ord local statistic for each pixel [@getis_local_1996], with high positive values assigned to hot spots (outlined and hatched in pink) and low negative values to cold spots (outlined and hatched in blue).
 
-```{r fig-2, fig.cap= "(ref:cap-2)", fig.width = 16.6/2.54, fig.height=20/2.54, fig.align='center'}
+```{r fig-2, fig.cap= "(ref:cap-2)", fig.width = 16.6/2.54, fig.height=20/2.54}
 p2a <-
   plot_patches(flir_example$df, flir_example$patches,
                val_pal = viridis::viridis(10, option = "A"), 
@@ -337,7 +331,7 @@ To model the various thermal heterogeneity metrics against time of day and fores
 
 (ref:cap-3) Trends in various measures of thermal heterogeneity over the day (06:00-14:30 hrs) for fine-scale temperature data collected using a thermal camera in primary (blue) and logged forests (orange). From left to right and top to bottom, the metrics are: median temperature (a); thermal Shannon Diversity Index (SHDI) (b); 95^th^ percentile minus median temperature (c); 5^th^ percentile minus median temperature (d); the average area (cm^2^) per hot spot (e); the average area (cm^2^) per cold spot (f); the number of hot spots per unit area (g); the number of cold spots per unit area (h); the Shape Index (SI) of hot spots (i); the Shape Index (SI) of cold spots (j); the Aggregation Index (AI) of hot spots (k); and the Aggregation Index (AI) of cold spots (l). Solid lines are model-predicted values with 95% confidence intervals. Semi-transparent background points represent the raw data. Statistically significant differences are indicated by asterisks: 0.01 < P < 0.05 (\*); 0.001 < P < 0.01 (\*\*) and P < 0.0001 (\*\*\*).
 
-```{r fig-3, fig.cap= "(ref:cap-3)", fig.width = 16.6/2.54, fig.height=16.6/2.54, fig.align='center'}
+```{r fig-3, fig.cap= "(ref:cap-3)", fig.width = 16.6/2.54, fig.height=16.6/2.54}
 
 p3 <-
   ggplot(data = flir_pred,
@@ -427,9 +421,9 @@ plot_stack(img_stack = flir_group_avg,
 
 Analytical functions in `ThermStats` are designed for any gridded temperature data. We illustrate this using a mean annual temperature layer (50 x 50 m resolution) estimated from canopy structure and topographic variables measured using LIDAR [@jucker_canopy_2018]. The layer encompasses forest and oil palm plantation within the Stability of Altered Forest Ecosystems (SAFE) project [@ewers_large-scale_2011]. We created a raster stack with one layer for cells inside the plantation boundary and one for cells outside, and used `stats_by_group` to identify hot and cold spots within each layer. The patch characteristics calculated by `stats_by_group` include upper and lower quantiles and the median, which together characterise the temperature distribution and can be used to construct boxplots (Figure \@ref(fig:fig-5)). We demonstrate that both hot and cold spots were hotter inside the oil palm plantation than the neighbouring forest.
 
-(ref:cap-5) Panel (a) shows the study area in the Stability of Altered Forest Ecosystems (SAFE) project, overlaid with the boundary of oil palm plantations [@ewers_large-scale_2011]. Variation in modelled mean annual temperature is shown in panel (b) [@jucker_canopy_2018]. Panel (c) shows the temperature distribution of hot spots (orange) and cold spots (green), inside and outside plantations.
+(ref:cap-5) Panel (a) shows the study area in the Stability of Altered Forest Ecosystems (SAFE) project, overlaid with the boundary of oil palm plantations [@ewers_large-scale_2011; @ggmap_2013]. Variation in modelled mean annual temperature is shown in panel (b) [@jucker_canopy_2018]. Panel (c) shows the temperature distribution of hot spots (orange) and cold spots (green), inside and outside plantations.
 
-```{r fig-5, fig.cap= "(ref:cap-5)", fig.width = 16.6/2.54, fig.height=14/2.54, fig.align='center'}
+```{r fig-5, fig.cap= "(ref:cap-5)", fig.width = 16.6/2.54, fig.height=14/2.54}
 
 p5a <-
   ggmap(lidar_bg) +
