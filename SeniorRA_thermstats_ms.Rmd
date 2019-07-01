@@ -75,6 +75,9 @@ load("data/flir_stats.Rdata")
 # flir_pred = model-predicted values
 # flir_results_sum = results from analyses of FLIR images
 
+# Remove missing values
+flir_dat <- na.omit(flir_dat)
+
 # Get significance level of FLIR results
 flir_sig <-
   flir_results_sum %>% 
@@ -396,12 +399,12 @@ Averaging across repeated images of the same area could help to reduce unwanted 
 
 ```{r fig-4, fig.cap= "(ref:cap-4)", fig.width = 8/2.54, fig.height = 8/2.54}
 custom_theme <- 
-    theme_classic() + 
-    theme(axis.title = element_text(size = lab_size),
-          axis.text.x = element_text(size = 7, 
-                                     angle = 45,
-                                     vjust = 0.5),
-          axis.text.y = element_text(size = text_size))
+  theme_classic() + 
+  theme(axis.title = element_text(size = lab_size),
+        axis.text.x = element_text(size = 7, 
+                                   angle = 45,
+                                   vjust = 0.5),
+        axis.text.y = element_text(size = text_size))
 
 plot_stack(img_stack = flir_group_avg,
            n = 100, 
