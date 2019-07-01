@@ -1,5 +1,5 @@
 ---
-title: "`ThermStats`: an `R` package for quantifying surface thermal heterogeneity in assessments of microclimates"
+title: "ThermStats: an R package for quantifying surface thermal heterogeneity in assessments of microclimates"
 output:
     bookdown::word_document2:
         reference_docx: ms_template.docx
@@ -536,7 +536,7 @@ Fine-scale temperature variation across space and time has a huge influence on s
 
 The development version of `ThermStats` can be downloaded from GitHub: https://github.com/rasenior/ThermStats. Bug reports and suggested enhancements can be submitted to: https://github.com/rasenior/ThermStats/issues. 
 
-This manuscript used `ThermStats` version 0.9.6, which is deposited on Zenodo [DOI: 10.5281/zenodo.3264016; @senior_thermstats_2019]. The manuscript itself can be reproduced by downloading the scripts and data from GitHub (https://github.com/rasenior/ThermStats_ms), and rendering using either the knit button in RStudio or the code `rmarkdown::render("SeniorRA_thermstats_ms.Rmd", output_format = "bookdown::word_document2")`.
+This manuscript used `ThermStats` version 0.9.6, which is deposited on Zenodo [https://doi.org/10.5281/zenodo.3264016; @senior_thermstats_2019]. The manuscript itself can be reproduced by downloading the scripts and data from GitHub (https://github.com/rasenior/ThermStats_ms), and rendering using either the knit button in RStudio or the code `rmarkdown::render("SeniorRA_thermstats_ms.Rmd", output_format = "bookdown::word_document2")`.
 
 # Acknowledgements
 
