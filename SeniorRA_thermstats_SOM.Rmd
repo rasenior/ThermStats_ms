@@ -31,7 +31,7 @@ knitr::opts_chunk$set(echo = FALSE,message = FALSE,error = FALSE, warning = FALS
 
 _______________________________________________________________________________________
 
-Rebecca A. Senior^1^*, Jane K. Hill^2^ and David P. Edwards^1^
+Rebecca A. Senior^1^*&sect;, Jane K. Hill^2^ and David P. Edwards^1^
 
 ^1^Department of Animal and Plant Sciences, Alfred Denny Building, University of Sheffield, Western Bank, Sheffield, S10 2TN, UK
 
@@ -39,7 +39,9 @@ Rebecca A. Senior^1^*, Jane K. Hill^2^ and David P. Edwards^1^
 
 *__Corresponding author:__ rebecca.a.senior@gmail.com, +44(0)114 2220123 (R.A. Senior)
 
-__ORCID iDs:__ orcid.org/0000-0002-8208-736X (R.A. Senior); orcid.org/0000-0003-1871-7715 (J.K. Hill)
+&sect; Present address: Woodrow Wilson School of Public and International Affairs, Princeton University, Princeton, New Jersey 08544 USA
+
+__ORCID iDs:__ 0000-0002-8208-736X (R.A. Senior); 0000-0003-1871-7715 (J.K. Hill); 0000-0001-8562-3853 (D.P. Edwards)
 
 \pagebreak
 \raggedright
