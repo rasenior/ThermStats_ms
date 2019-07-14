@@ -18,7 +18,9 @@ documentclass: article
 link-citations: yes
 csl: methods-in-ecology-and-evolution.csl
 biblio-style: apalike
-bibliography: [refs.bib]
+bibliography: refs.bib
+nocite: | 
+  @scheffers_extreme_2017
 ---
 
 ```{r knitr-setup, include=FALSE}
